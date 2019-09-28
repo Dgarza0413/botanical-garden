@@ -3,16 +3,18 @@ import API from "../utils/API";
 
 class Plants extends React.Component {
     state = {
-        plants =[]
+        plants: []
     };
 
     componentDidMount() {
         this.loadPlants();
     }
     loadPlants = () => {
-        API.getPlatns()
+        API.searchPlant()
             .then(res =>
-                this.setState({ plants: res.data }))
+                console.log(res),
+                // this.setState({ plants: res.data })
+            )
             .catch(err => console.log(err));
     };
     render() {
