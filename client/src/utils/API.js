@@ -1,18 +1,16 @@
 import axios from "axios";
 
-const key = `SzdHMkwvZDdZVTZUMGpYckFlOVNFUT09`;
-
 export default {
-    searchPlant: function (plant) {
-        return axios.get("https://trefle.io/api/plants", {
-            headers: {
-                'Authorization': `Bearer ${key}`,
-                'Content-Type': 'application/x-www-form-urlencoded'
-            },
-            params: {
-                q: "rosemary",
-                token: `${key}`
-            }
-        })
+    loadPlant: () => {
+        return axios.get('/api/getplants')
+    },
+    searchPlant: (query) => {
+        return axios.post('/api/getplants', query)
+    },
+    postPlantDetail: (id) => {
+        return axios.post('api/getplants/:id', id)
+    },
+    getPlantDetail: () => {
+        return axios.get('/api/getplants/:id')
     }
 }

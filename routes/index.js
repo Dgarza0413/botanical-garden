@@ -8,6 +8,7 @@ router.use("/api", apiRoutes);
 // If no API routes are hit, send the React app
 router.use(function (req, res) {
     res.sendFile(path.join(__dirname, "../client/build/index.html"));
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
 });
 
 module.exports = router;
