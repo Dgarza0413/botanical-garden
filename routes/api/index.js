@@ -27,13 +27,12 @@ router.post("/getplants", (req, res) => {
 })
 
 router.post('/getplants/:id', (req, res) => {
-    // console.log(req.body)
-    console.log(req.params)
     axios.get(`${url}/${req.body.id}`, {
         headers: {
             Authorization: `Bearer ${token}`
         }
     }).then(data => {
+        console.log(data)
         res.json(data.data)
     }).catch(err => console.error(err))
 })
