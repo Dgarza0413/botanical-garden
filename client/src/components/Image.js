@@ -6,7 +6,7 @@ export default function Image({ urls }) {
         <div>
             {urls.map((e, i) => {
                 return (
-                    <img src={e.url} alt="name" />
+                    <img style={{ "width": "300px" }} src={e.url} alt="name" />
                 )
             })}
         </div>
