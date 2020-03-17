@@ -7,6 +7,7 @@ function App() {
     <Router>
       <div>
         <Switch>
+          {/* <Route exact path="/plant/:id" component={detail} /> */}
           <Route exact path="/" component={Plants} />
         </Switch>
       </div>
