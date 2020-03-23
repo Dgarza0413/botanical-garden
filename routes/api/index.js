@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const plantsRoute = require('./plantsRoute');
-const userRoute = require('./userRoute');
+// const plantsRoute = require('./plantsRoute');
+// const userRoute = require('./userRoute');
 const axios = require('axios');
 
 // place in env file
@@ -10,8 +10,8 @@ const token = "SzdHMkwvZDdZVTZUMGpYckFlOVNFUT09";
 const url = `https://trefle.io/api/plants`
 
 
-router.use('/plantsRoute', plantsRoute);
-router.use('/userRoute', userRoute);
+// router.use('/plantsRoute', plantsRoute);
+// router.use('/userRoute', userRoute);
 
 router.post("/getplants", (req, res) => {
     axios.get(url, {

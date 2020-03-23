@@ -2,37 +2,32 @@ import React, { useState, useEffect } from 'react';
 import API from '../utils/API';
 
 import useInputChange from '../hooks/useInputChange';
-import useInfiniteScroll from '../hooks/useInfiniteScroll';
-import axios from 'axios';
-import Image from '../components/Image'
+import PlantCard from '../components/Plantcard';
+import PlantListBar from '../components/PlantListBar';
+import PlantForm from '../components/PlantForm';
+import Grid from '@material-ui/core/Grid';
 
 const Plants = () => {
   const [plants, setPlants] = useState([]);
-  const [options, setOptions] = useState(0);
   const [details, setDetails] = useState([])
-
-  console.log(details)
-
-  // const fetchMoreItems = () => {
-  //   setTimeout(() => {
-  //     // console.log('setting options')
-  //     // console.log(options)
-  //     setOptions(options + 1)
-  //     setIsFetching(false);
-  //   }, 2000);
-  // }
-
 
   //hooks
   const [value, handleInputChange] = useInputChange()
-  // const [isFetching, setIsFetching] = useInfiniteScroll(fetchMoreItems)
 
 
-  const formValidate = (e) => {
+  const formValidate = async (e) => {
     e.preventDefault()
-    API.searchPlant(value)
-      .then(res => setPlants(res.data))
-      .catch(err => console.error(err))
+
+    try {
+
+      const res = await API.searchPlant(value)
+      await setPlants(res.data)
+
+    } catch (error) {
+      console.error(error)
+    }
+
+
   }
 
   const detailQuery = async () => {
@@ -46,12 +41,6 @@ const Plants = () => {
     setDetails(arr)
   }
 
-  const handleClick = (id) => {
-    API.postPlantDetail({ id: id })
-      .then(res => console.log(res))
-      .catch(err => console.error(err))
-  }
-
   useEffect(() => {
     detailQuery()
   }, [plants])
@@ -59,13 +48,13 @@ const Plants = () => {
   return (
     <div>
       <h1>Plants Page</h1>
+      <PlantListBar />
+      <PlantForm />
 
       <form onSubmit={formValidate}>
         <label>input search</label>
         <input
-          // value="Submit"
           value={value.plantName || ""}
-          // value={value.plantName || ""}
           onChange={handleInputChange}
           name="plantName"
           type="string"
@@ -73,23 +62,25 @@ const Plants = () => {
         <button type="submit" value='Submit'>Submit</button>
       </form>
 
+      <Grid container justify="center" spacing={3}>
+        {details.length === details.length ? details.map((e, i) => {
+          console.log(e)
+          return (
+            <Grid item xs={3}>
+              <PlantCard
+                image={e.images[0] || {}}
+                scientific_name={e.scientific_name}
+                common_name={e.common_name || 'unknown'}
+                id={e.id}
+              />
+            </Grid>
+          )
+        }) : "loading"}
+      </Grid>
 
-      {details.length === details.length ? details.map((e, i) => {
-        console.log(e)
-        return (
-          <div key={i} onClick={() => handleClick(e.id)}>
-
-            <Image urls={e.images} />
-            <div>scientific_name: {e.scientific_name}</div>
-            <div>common name: {e.family_common_name || "unknown"}</div>
-            <div >ID: {e.id}</div>
-            <br />
-          </div>
-        )
-      }) : "loading"}
-      {/* {isFetching && 'Searching for more plants'} */}
     </div >
   )
+
 }
 
 export default Plants;

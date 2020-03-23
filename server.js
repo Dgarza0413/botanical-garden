@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const routes = require('./routes');
 const app = express();
 const PORT = process.env.PORT || 3001;
-const passport = require('./config/passport.js');
+// const passport = require('./config/passport.js');
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -23,16 +23,19 @@ app.use(
     saveUninitialized: true,
   })
 );
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
 // Add routes, both API and view
 app.use(routes);
 
 // Connect to the Mongo DB
-var MONGODB_URI =
-  process.env.MONGODB_URI || 'mongodb://localhost/botanical-garden';
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/botanical-garden';
+
+mongoose.connect(MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+});
 
 // Start the API server
 app.listen(PORT, function () {
