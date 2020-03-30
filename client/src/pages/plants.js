@@ -49,7 +49,10 @@ const Plants = () => {
     <div>
       <h1>Plants Page</h1>
       <PlantListBar />
-      <PlantForm />
+      <PlantForm
+        handleInputChange={handleInputChange}
+        value={value.plantName || ""}
+      />
 
       <form onSubmit={formValidate}>
         <label>input search</label>
@@ -64,7 +67,6 @@ const Plants = () => {
 
       <Grid container justify="center" spacing={3}>
         {details.length === details.length ? details.map((e, i) => {
-          console.log(e)
           return (
             <Grid item xs={3}>
               <PlantCard

@@ -16,13 +16,13 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
 }
 // Passport configuration
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET || 'the cat ate my keyboard',
-    resave: true,
-    saveUninitialized: true,
-  })
-);
+// app.use(
+//   session({
+//     secret: process.env.SESSION_SECRET || 'the cat ate my keyboard',
+//     resave: true,
+//     saveUninitialized: true,
+//   })
+// );
 // app.use(passport.initialize());
 // app.use(passport.session());
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
@@ -11,13 +11,14 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
+
 export default function PlantForm() {
     const classes = useStyles();
-    const [value, setValue] = React.useState('');
+    // const [value, setValue] = React.useState('');
 
-    const handleChange = event => {
-        setValue(event.target.value);
-    };
+    // const handleChange = event => {
+    //     setValue(event.target.value);
+    // };
 
     return (
         <form className={classes.root} noValidate autoComplete="off">
@@ -26,9 +27,9 @@ export default function PlantForm() {
                 label="Multiline"
                 multiline
                 rowsMax="4"
-                value={value}
-                onChange={handleChange}
+            // value={value}
             />
+            <button type="submit" value='Submit'>Submit</button>
         </form>
     );
 }
