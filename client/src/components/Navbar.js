@@ -176,7 +176,7 @@ export default function Navbar() {
                     <Typography className={classes.title} variant="h6" noWrap>
                         Material-UI
           </Typography>
-                    <div className={classes.search}>
+                    {/* <div className={classes.search}>
                         <div className={classes.searchIcon}>
                             <SearchIcon />
                         </div>
@@ -188,9 +188,9 @@ export default function Navbar() {
                             }}
                             inputProps={{ 'aria-label': 'search' }}
                         />
-                    </div>
-                    <div className={classes.grow} />
-                    <div className={classes.sectionDesktop}>
+                    </div> */}
+                    {/* <div className={classes.grow} /> */}
+                    {/* <div className={classes.sectionDesktop}>
                         <IconButton aria-label="show 4 new mails" color="inherit">
                             <Badge badgeContent={4} color="secondary">
                                 <MailIcon />
@@ -211,8 +211,8 @@ export default function Navbar() {
                         >
                             <AccountCircle />
                         </IconButton>
-                    </div>
-                    <div className={classes.sectionMobile}>
+                    </div> */}
+                    {/* <div className={classes.sectionMobile}>
                         <IconButton
                             aria-label="show more"
                             aria-controls={mobileMenuId}
@@ -222,7 +222,7 @@ export default function Navbar() {
                         >
                             <MoreIcon />
                         </IconButton>
-                    </div>
+                    </div> */}
                 </Toolbar>
             </AppBar>
             {renderMobileMenu}
