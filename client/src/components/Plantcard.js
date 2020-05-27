@@ -26,23 +26,23 @@ export default function PlantCard({ scientific_name, common_name, image }) {
     const genusSpecies = scientific_name.split(" ")
     return (
         <Card className={classes.root}>
-            <Link to="/detail">
-                <CardActionArea>
-                    <CardMedia
-                        className={classes.media}
-                        image={image.url}
-                        title={'plant'}
-                    />
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            {genusSpecies[0]} <span className={classes.italics}>{genusSpecies[1]}</span>
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                            {common_name}
-                        </Typography>
-                    </CardContent>
-                </CardActionArea>
-            </Link>
+            {/* <Link to="/detail"> */}
+            <CardActionArea>
+                <CardMedia
+                    className={classes.media}
+                    image={image.url}
+                    title={'plant'}
+                />
+                <CardContent>
+                    <Typography gutterBottom variant="h5" component="h2">
+                        {genusSpecies[0]} <span className={classes.italics}>{genusSpecies[1]}</span>
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary" component="p">
+                        {common_name}
+                    </Typography>
+                </CardContent>
+            </CardActionArea>
+            {/* </Link> */}
             <CardActions>
                 <Button size="small" color="primary">
                     Share

@@ -1,50 +1,39 @@
 require('dotenv').config();
-const bodyParser = require('body-parser');
+const fs = require('fs');
+const path = require('path');
 const express = require('express');
-const session = require('express-session');
-const mongoose = require('mongoose');
-const routes = require('./routes');
 const app = express();
-const PORT = process.env.PORT || 3001;
-// const passport = require('./config/passport.js');
+const PORT = process.env.PORT || 4444;
 
-// Define middleware here
+const { ApolloServer } = require('apollo-server-express');
+const filePath = path.join(__dirname, 'typeDefs.gql');
+const typeDefs = fs.readFileSync(filePath, 'utf-8')
+const resolvers = require('./resolvers');
+const routes = require('./routes');
+
+const PlantAPI = require('./datasources/plant');
+
+const server = new ApolloServer({
+  context: () => {
+    return {
+      token: 'SzdHMkwvZDdZVTZUMGpYckFlOVNFUT09',
+    }
+  },
+  resolvers,
+  typeDefs,
+  dataSources: () => ({
+    plantAPI: new PlantAPI()
+  })
+});
+
+server.applyMiddleware({ app, path: '/graphql' });
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
-}
-// Passport configuration
-// app.use(
-//   session({
-//     secret: process.env.SESSION_SECRET || 'the cat ate my keyboard',
-//     resave: true,
-//     saveUninitialized: true,
-//   })
-// );
-// app.use(passport.initialize());
-// app.use(passport.session());
-
-// Add routes, both API and view
 app.use(routes);
 
-// Connect to the Mongo DB
-var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/botanical-garden';
-
-mongoose.connect(MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
-
-// Start the API server
 app.listen(PORT, function () {
-  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+  console.log(`🌎  ==> API Server now listening on PORT ${server.graphqlPath}!`);
 });
 
-process.on('SIGINT', () => {
-  mongoose.connection.close().then(() => {
-    console.log('Mongoose disconnected');
-    process.exit(0);
-  });
-});
+

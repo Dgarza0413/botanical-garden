@@ -1,0 +1,24 @@
+type Plant {
+    id: ID
+    common_name: String
+    complete_data: Boolean
+    link: String
+    scientific_name: String
+    slug: String
+}
+
+type User {
+    id: ID
+    email: String
+    plants: [Plant]
+}
+
+type Query {
+    getPlants(id: String!): PlantConnection
+}
+
+type PlantConnection {
+    # cursor: String
+    # hasMore: Boolean
+    plants: [Plant]
+}

@@ -5,6 +5,7 @@ export default {
         return axios.get('/api/getplants')
     },
     searchPlant: (query, page) => {
+        console.log(query)
         return axios.post('/api/getplants', query, page)
     },
     postPlantDetail: (id) => {
