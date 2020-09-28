@@ -4,9 +4,9 @@ export default {
     loadPlant: () => {
         return axios.get('/api/getplants')
     },
-    searchPlant: (query, page) => {
+    searchPlant: (query) => {
         console.log(query)
-        return axios.post('/api/getplants', query, page)
+        return axios.post('/api/getplants', query)
     },
     postPlantDetail: (id) => {
         return axios.post('/api/getplants/:id', id)

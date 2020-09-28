@@ -13,16 +13,10 @@ const Index = () => {
                 sm={12}
             >
                 <Grid>
-                    <Typography variant="h1">
-                        Botanical Garden
-                </Typography>
-                    <Typography variant='h3'>
-                        An Online botanical solution
-                    </Typography>
+                    <Typography variant="h1">Botanical Garden</Typography>
+                    <Typography variant='h3'>An Online botanical solution</Typography>
                     <Link to='/search'>
-                        <Button variant="primary">
-                            Search
-                </Button>
+                        <Button variant="primary">Search</Button>
                     </Link>
                 </Grid>
             </Grid>

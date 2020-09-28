@@ -5,6 +5,8 @@ const token = "SzdHMkwvZDdZVTZUMGpYckFlOVNFUT09";
 const url = `https://trefle.io/api/plants`;
 
 router.post("/api/getplants", async (req, res) => {
+    console.log("route hit")
+    console.log(req.body)
     try {
         const headers = {
             headers: { Authorization: `Bearer ${token}` },
@@ -27,13 +29,14 @@ router.post('/api/getplants/:id', async (req, res) => {
 
 
 router.get("/api/getplants", (req, res) => {
-    axios.get(url, {
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    }).then(data => {
-        res.json(data.data)
-    }).catch(err => console.error(err))
+    console.log('route hit')
+    // axios.get(url, {
+    //     headers: {
+    //         Authorization: `Bearer ${token}`
+    //     }
+    // }).then(data => {
+    //     res.json(data.data)
+    // }).catch(err => console.error(err))
 })
 
 router.use(function (req, res) {

@@ -4,6 +4,7 @@ type Plant {
     complete_data: Boolean
     link: String
     scientific_name: String
+    image_url: String
     slug: String
 }
 
@@ -14,11 +15,18 @@ type User {
 }
 
 type Query {
-    getPlants(id: String!): PlantConnection
+    getPlants(
+        id: String!
+        link: String
+        page_number: Int
+        per_page: Int
+        total: Int 
+        total_pages: Int
+        ): PlantConnection
 }
 
 type PlantConnection {
-    # cursor: String
-    # hasMore: Boolean
+    cursor: String
+    hasMore: Boolean
     plants: [Plant]
 }
