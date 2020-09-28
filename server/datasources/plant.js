@@ -12,19 +12,29 @@ class PlantAPI extends RESTDataSource {
 
     async getPlants(search) {
         const { data } = await this.get(`plants/search?q=${search}`)
+        console.log(data)
         return Array.isArray(data)
             ? data.map(plant => this.plantReducer(plant))
             : [];
     }
 
     plantReducer(plant) {
+        console.log(plant)
         return {
             id: plant.id || 0,
             common_name: plant.common_name || 'unknown',
-            complete_data: plant.complete_data,
-            link: plant.link,
-            scientific_name: plant.scientific_name,
             slug: plant.slug,
+            scientific_name: plant.scientific_name,
+            year: plant.year,
+            bibliography: plant.bibliography,
+            author: plant.author,
+            status: plant.status,
+            rank: plant.rank,
+            family_common_name: plant.family_common_name,
+            genus_id: plant.genus_id,
+            // synonyms: plant.synonyms,
+            genus: plant.genus,
+            family: plant.family,
             image_url: plant.image_url
         };
     }

@@ -35,12 +35,6 @@ server.applyMiddleware({ app, path: '/', cors: false });
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// app.use(cors({
-//   credentials: true,
-//   origin: 'http://localhost:3000'
-// }));
-// app.use(routes);
-
 
 app.listen(PORT, function () {
   console.log(`🌎  ==> API Server now listening on PORT ${server.graphqlPath}!`);

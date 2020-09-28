@@ -16,7 +16,7 @@ const useStyles = makeStyles({
         maxWidth: 345,
     },
     media: {
-        height: 140,
+        height: 160,
     },
     italics: {
         fontStyle: "italic"
@@ -26,7 +26,8 @@ const useStyles = makeStyles({
 function PlantCard({
     scientific_name,
     common_name,
-    image_url
+    image_url,
+
 }) {
     const classes = useStyles();
     const genusSpecies = scientific_name.split(" ")

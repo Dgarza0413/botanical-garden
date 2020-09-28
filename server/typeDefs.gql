@@ -1,11 +1,19 @@
 type Plant {
-    id: ID
+    id: Int
     common_name: String
-    complete_data: Boolean
-    link: String
-    scientific_name: String
-    image_url: String
     slug: String
+    scientific_name: String
+    year: Int
+    bibliography: String
+    author: String
+    status: String
+    rank: String
+    family_common_name: String
+    genus_id: Int
+    synonyms: [String]
+    genus: String
+    family: String
+    image_url: String
 }
 
 type User {
